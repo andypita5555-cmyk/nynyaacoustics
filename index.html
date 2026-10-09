@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<!-- Tienda generada con Harvys, asistente de e-commerce creado por el Profesor Harvey Sanabria -->
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>NYNYA Acoustics — El silencio también se diseña.</title>
+<meta name="description" content="Paneles acústicos, instalación y diseño de tratamientos acústicos para estudios de grabación, oficinas y auditorios.">
+<meta name="generator" content="Harvys — asistente de e-commerce del Profesor Harvey Sanabria">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cinzel&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="styles.css">
+</head>
+<body class="anim-media tarj-elevadas modo-oscuro">
+
+<!-- MODAL PAGO -->
+<div class="modal-overlay" id="modal-pago" onclick="modalClickFuera(event)">
+  <div class="modal">
+    <div class="modal-handle"></div>
+    <div class="modal-head"><h3>Confirmar pago</h3><button class="modal-cerrar" onclick="cerrarModal()" aria-label="Cerrar">✕</button></div>
+    <div class="modal-body">
+      <div class="modal-total"><span class="tl">Total a pagar</span><span class="tm" id="modal-total-monto">$0</span></div>
+      <div class="pago-metodos" id="pago-metodos"></div>
+      <div class="pago-datos" id="pago-datos">
+        <div class="pd-label">Transferir a este número</div>
+        <div class="pd-numero" id="pd-numero"></div>
+        <div class="pd-nombre" id="pd-nombre"></div>
+        <button class="btn-copiar" onclick="copiarNumero()">📋 Copiar número</button>
+      </div>
+      <div class="pasos">
+        <div class="paso"><div class="paso-num">1</div><div class="paso-txt" id="paso-1"></div></div>
+        <div class="paso"><div class="paso-num">2</div><div class="paso-txt">Toca <strong>"Confirmar y enviar"</strong> — se abre WhatsApp con tu pedido</div></div>
+        <div class="paso"><div class="paso-num">3</div><div class="paso-txt" id="paso-3"></div></div>
+      </div>
+    </div>
+    <div class="modal-foot">
+      <a href="#" target="_blank" rel="noopener" class="btn-wsp" onclick="return prepararWsp(this)">✅ Confirmar y enviar por WhatsApp</a>
+      <button class="btn-seguir" onclick="cerrarModal()">← Seguir comprando</button>
+    </div>
+  </div>
+</div>
+
+<div class="overlay" id="overlay" onclick="cerrarCarrito()"></div>
+
+<button class="carrito-fab" onclick="toggleCarrito()" id="fab" aria-label="Abrir carrito">🛒<span class="carrito-badge" id="badge">0</span></button>
+
+<div class="carrito-panel" id="panel-carrito">
+  <div class="panel-header"><h3>Tu selección acústica</h3><button class="btn-cerrar" onclick="cerrarCarrito()" aria-label="Cerrar carrito">✕</button></div>
+  <ul id="lista-carrito"></ul>
+  <div class="panel-footer">
+    <div class="total-row"><span class="total-lbl">Total</span><span class="total-monto" id="total">$0</span></div>
+    <div class="panel-btns"><button class="btn-vaciar" onclick="vaciarCarrito()">Vaciar</button><button class="btn-pagar" onclick="pagar()">Consultar pedido por WhatsApp</button></div>
+  </div>
+</div>
+
+<header class="hero hero-centrado">
+  <div class="hero-bg efecto-brillo"></div>
+  <div class="hero-content">
+    <div>
+      
+      <div class="hero-badge">El silencio también se diseña.</div>
+      <h1>NYNYA<span>Acoustics</span></h1>
+      <p class="hero-sub">Paneles, instalación y diseño acústico para estudios de grabación, oficinas y auditorios.</p>
+      <a href="#catalogo" class="btn-hero">Explorar soluciones
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+      </a>
+      <div class="hero-stats"><div class="hero-stat"><div class="num">6</div><div class="lbl">Productos y servicios</div></div><div class="hero-stat"><div class="num">15 días hábiles</div><div class="lbl">Entrega aproximada</div></div><div class="hero-stat"><div class="num">Bogotá</div><div class="lbl">Cobertura metropolitana</div></div></div>
+    </div>
+    </div>
+  <div class="hero-scroll"><div></div></div>
+</header>
+
+<section class="banner-sec">
+  <div class="banner-glow"></div>
+  <div class="banner-content">
+    <div class="sec-label">Acústica para tu espacio</div>
+    <h2>Soluciones para <em>escuchar mejor</em></h2>
+    <p>Encuentra paneles y accesorios acústicos, con asesoría sobre su ubicación. Entregas en la Zona Metropolitana de Bogotá y opción de recogida personal. Tiempo aproximado: 15 días hábiles.</p>
+    <div class="banner-chips"><span class="chip">Paneles acústicos</span><span class="chip">Asesoría de ubicación</span><span class="chip">Recogida personal</span><span class="chip">Entrega metropolitana</span></div>
+  </div>
+</section>
+
+<div class="filtros-wrap" id="filtros-bar">
+  <div class="busqueda-wrap">
+    <svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round"><path d="M21 21l-4.35-4.35M17 11A6 6 0 1 1 5 11a6 6 0 0 1 12 0z"/></svg>
+    <input type="text" id="buscador" placeholder="Buscar producto..." oninput="filtrarBusqueda()">
+  </div>
+</div>
+<section class="catalogo-wrap" id="catalogo">
+  <div class="catalogo-header">
+    <div><div class="sec-label">Soluciones acústicas</div><div class="sec-title">Productos y servicios</div></div>
+    <div class="catalogo-count" id="cont-count"></div>
+  </div>
+  <div id="productos"></div>
+</section>
+<section class="seccion-personalizada" id="custom-condiciones-servicio">
+<section style="background:var(--bg2);color:var(--tx);padding:32px 24px;border-radius:var(--r)"><p class="sec-label">Antes de confirmar tu pedido</p><h2 class="sec-title">Entregas e instalación</h2><p>Entregas en la Zona Metropolitana de Bogotá, con un tiempo aproximado de 15 días hábiles. También puedes recoger personalmente. No se realizan envíos nacionales ni se ofrece contraentrega.</p><p><strong>Instalación: $60.000 de base + $20.000 por panel a instalar.</strong> El carrito incluye únicamente la tarifa base si agregas el servicio. El adicional por panel no se calcula automáticamente: confirma la cantidad de paneles y el total del servicio por WhatsApp antes de pagar.</p><p>Ejemplo: instalar 3 paneles cuesta $120.000 de servicio ($60.000 de base + 3 × $20.000), aparte del precio de los productos. El gobo y la placa difusora requieren solo entrega y no generan el adicional de instalación por panel. Confirma las condiciones de entrega por WhatsApp.</p><p><strong>Medio de pago: Nequi, 3229648208.</strong> Confirma el titular por WhatsApp antes de transferir. Atención por WhatsApp: 9:00 a. m. a 10:00 p. m. Este prototipo académico no procesa pagos.</p></section>
+</section>
+
+<section class="beneficios-sec" id="beneficios">
+  <div class="sec-centro"><div class="sec-label">El respaldo de NYNYA</div><div class="sec-title">Acústica con asesoría</div></div>
+  <div class="beneficios-grid">
+    <div class="bcard"><div class="bcard-icono">🔊</div><h3>Rendimiento acústico garantizado</h3><p>El negocio ofrece garantía de rendimiento acústico. Consulta las condiciones según tu espacio y tratamiento.</p></div><div class="bcard"><div class="bcard-icono">🪵</div><h3>Materiales premium</h3><p>Trabajamos con proveedores de materiales premium para nuestras soluciones acústicas.</p></div><div class="bcard"><div class="bcard-icono">📐</div><h3>Asesoría de instalación</h3><p>Orientación sobre la ubicación de los paneles que compras para tu espacio.</p></div>
+  </div>
+</section>
+
+<section class="recs-sec">
+  <div class="sec-label">Explora el catálogo</div>
+  <div class="sec-title">Soluciones para tu espacio</div>
+  <div class="recs-grid" id="recomendados"></div>
+</section>
+
+<section class="top-sec">
+  <div class="sec-label">Preferencias de la comunidad</div>
+  <div class="sec-title">Favoritos acústicos</div>
+  <div class="top-grid" id="top"></div>
+</section>
+
+<section class="duelo-sec">
+  <div class="sec-label">Compara y elige</div>
+  <div class="sec-title">¿Qué solución prefieres?</div>
+  <div class="duelo-arena" id="duelo"></div>
+  <p class="duelo-info">Selecciona tu favorito para darle un voto en el ranking. Esta comparación no sustituye una asesoría acústica.</p>
+</section>
+
+<section class="horarios-sec">
+  <div class="sec-label">Atención por WhatsApp</div>
+  <div class="sec-title">Hablemos de tu espacio</div>
+  <ul class="horarios-lista"><li>🕒 WhatsApp: 9:00 a. m. a 10:00 p. m.</li></ul>
+</section>
+
+<footer>
+  <div class="footer-grid">
+    <div class="footer-marca"><h3>NYNYA Acoustics</h3><p>NYNYA Acoustics · Paneles y tratamientos acústicos en Bogotá D.C. Entregas en la Zona Metropolitana de Bogotá.</p></div>
+    <div class="footer-col"><h4>Contacto</h4><ul><li><a href="https://wa.me/573229648208" target="_blank" rel="noopener">WhatsApp: +57 3229648208</a></li><li><a href="https://instagram.com/nynya.acoustics" target="_blank" rel="noopener">Instagram: @nynya.acoustics</a></li><li>📍 Bogotá D.C.</li></ul></div>
+    <div class="footer-col"><h4>Pagos</h4><ul><li>Nequi</li></ul></div>
+    <div class="footer-col"><h4>Categorías</h4><ul><li>Paneles acústicos</li><li>Accesorios</li><li>Servicios anidados</li></ul></div>
+  </div>
+  <div class="footer-bottom">
+    <span>© 2026 NYNYA Acoustics — Todos los derechos reservados</span>
+    <span>Prototipo académico · Shopper Metaverso</span>
+  </div>
+</footer>
+
+<script src="script.js"></script>
+</body>
+</html>
